@@ -12,7 +12,8 @@
     "test": "vitest",
     "test:ui": "vitest --ui",
     "e2e": "playwright test",
-    "e2e:ui": "playwright test --ui"
+    "e2e:ui": "playwright test --ui",
+    "postinstall": "next telemetry disable"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.18",
