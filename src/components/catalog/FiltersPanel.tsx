@@ -34,7 +34,7 @@ export default function FiltersPanel({ onFilterChange }: FiltersPanelProps) {
   };
 
   return (
-    <div className="bg-neutral-800 p-6 rounded-lg shadow-card">
+    <div className="bg-white p-6 rounded-lg shadow-card">
       <h3 className="font-semibold text-lg mb-4">Filters</h3>
 
       {/* Material */}

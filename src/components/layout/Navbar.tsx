@@ -144,7 +144,7 @@ const NavItem = ({ item }: { item: NavItem }) => {
       {/* Dropdown Menu */}
       {hasSubItems && (
         <div 
-          className={`absolute left-0 top-full w-56 bg-neutral-800 shadow-lg z-50 border-t-2 border-accent-walnut transition-all duration-300 transform origin-top ${
+          className={`absolute left-0 top-full w-56 bg-white shadow-lg z-50 border-t-2 border-accent-walnut transition-all duration-300 transform origin-top ${
             isHovered ? 'opacity-100 scale-y-100' : 'opacity-0 scale-y-95 pointer-events-none'
           }`}
           onMouseEnter={() => setIsHovered(true)}
@@ -214,31 +214,31 @@ function MobileMenu({
 
   return (
     <div 
-      className={`fixed inset-0 z-50 overflow-y-auto bg-neutral-900 transform transition-all duration-300 ease-in-out ${
+      className={`fixed inset-0 z-50 overflow-y-auto bg-white transform transition-all duration-300 ease-in-out ${
         isAnimating ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-full'
       }`}
     >
-      <div className="flex items-center justify-between p-4 border-b border-neutral-700 bg-neutral-800 sticky top-0 z-10 shadow-sm">
+      <div className="flex items-center justify-between p-4 border-b border-gray-200 bg-white sticky top-0 z-10 shadow-sm">
         <Link 
           href="/" 
-          className="text-xl font-serif font-bold text-white"
+          className="text-xl font-serif font-bold text-gray-900"
           onClick={onClose}
         >
           {siteConfig.brand}
         </Link>
         <button 
           onClick={onClose}
-          className="p-2 text-neutral-400 hover:text-accent-sand transition-colors duration-200 hover:bg-neutral-700 rounded-full"
+          className="p-2 text-gray-500 hover:text-accent-walnut transition-colors duration-200 hover:bg-gray-100 rounded-full"
         >
           <XMarkIcon className="h-6 w-6" />
         </button>
       </div>
 
-      <div className="divide-y divide-neutral-700">
+      <div className="divide-y divide-gray-200">
         {items.map((item) => (
-          <div key={item.href} className="border-b border-neutral-600">
+          <div key={item.href} className="border-b border-gray-100">
             <div 
-              className="flex items-center justify-between px-4 py-4 text-white font-medium transition-colors duration-200 hover:bg-neutral-800"
+              className="flex items-center justify-between px-4 py-4 text-gray-900 font-medium transition-colors duration-200 hover:bg-gray-50"
               onClick={() => {
                 if (item.subItems && item.subItems.length > 0) {
                   setActiveSubMenu(activeSubMenu === item.label ? null : item.label);
@@ -285,18 +285,18 @@ function MobileMenu({
         ))}
       </div>
 
-      <div className="fixed bottom-0 left-0 right-0 bg-neutral-800 border-t border-neutral-700 p-4">
+      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4">
         <div className="flex justify-between items-center">
           <Link 
             href="/account" 
-            className="text-neutral-400 hover:text-accent-sand"
+            className="text-gray-700 hover:text-accent-walnut"
             onClick={onClose}
           >
             My Account
           </Link>
           <Link 
             href="/contact" 
-            className="text-neutral-400 hover:text-accent-sand"
+            className="text-gray-700 hover:text-accent-walnut"
             onClick={onClose}
           >
             Contact Us
