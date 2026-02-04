@@ -12,7 +12,7 @@ export default async function ShopTheLookGrid() {
   }
 
   return (
-    <section className="py-16 bg-neutral-50">
+    <section className="py-16 bg-neutral-900">
       <Container>
         <SectionHeader
           title="Shop the Look"

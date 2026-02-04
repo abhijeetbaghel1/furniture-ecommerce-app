@@ -47,14 +47,14 @@ const categories = [
 ];
 export default function CategoryTiles() {
   return (
-    <section className="py-16 bg-neutral-50">
+    <section className="py-16 bg-neutral-900">
       // Update the container and grid layout
 <div className="container mx-auto px-4">
   <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
     {categories.map((category) => (
       <div 
         key={category.href}
-        className="relative aspect-[640/427] overflow-hidden rounded-lg bg-neutral-100 
+        className="relative aspect-[640/427] overflow-hidden rounded-lg bg-neutral-700 
                  transition-all duration-300 hover:scale-[1.02] hover:shadow-md"
       >
         <Link href={category.href} className="block w-full h-full">

@@ -20,7 +20,7 @@ export default async function HomePage() {
       <ShopTheLookGrid />
 
       {/* Bestsellers */}
-      <section className="py-16 bg-neutral-50">
+      <section className="py-16 bg-neutral-900">
         <Container>
           <SectionHeader title="Bestsellers" subtitle="Our most loved pieces" />
           <ProductGrid products={bestsellers.slice(0, 4)} />
@@ -28,7 +28,7 @@ export default async function HomePage() {
       </section>
 
       {/* Ready to Ship */}
-      <section className="py-16 bg-neutral-50">
+      <section className="py-16 bg-neutral-900">
         <Container>
           <SectionHeader
             title="Ready to Ship"
@@ -39,7 +39,7 @@ export default async function HomePage() {
       </section>
 
       {/* Bespoke CTA */}
-      <section className="py-16 bg-neutral-50">
+      <section className="py-16 bg-neutral-900">
         <Container>
           <div className="max-w-2xl mx-auto">
             <SectionHeader
@@ -71,11 +71,11 @@ export default async function HomePage() {
                 name="email"
                 placeholder="Enter your email"
                 required
-                className="flex-1 px-4 py-2 rounded-md text-neutral-900 focus:outline-none focus:ring-2 focus:ring-white"
+                className="flex-1 px-4 py-2 rounded-md text-white bg-neutral-700 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-accent-sand"
               />
               <button
                 type="submit"
-                className="px-6 py-2 bg-neutral-50 text-accent-walnut font-semibold rounded-md hover:bg-neutral-100 transition-colors border border-neutral-200"
+                className="px-6 py-2 bg-neutral-800 text-accent-sand font-semibold rounded-md hover:bg-neutral-700 transition-colors border border-neutral-600"
               >
                 Subscribe
               </button>
