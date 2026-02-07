@@ -61,10 +61,6 @@ const NAV_ITEMS: NavItem[] = [
     href: '/collections/garden',
   },
   {
-    label: 'Shop By Style',
-    href: '/collections/shop-by-style',
-  },
-  {
     label: 'Clearance Sale',
     href: '/collections/clearance-sale',
   },
@@ -390,7 +386,8 @@ export default function Navbar() {
 
         {/* Navigation Links Below */}
         <div className="border-t border-orange-200 bg-gradient-to-r from-orange-50 to-amber-50">
-          <nav className="hidden md:flex justify-center space-x-8 py-4">
+          {/* Desktop Navigation */}
+          <nav className="hidden xl:flex justify-center space-x-8 py-4">
             <Link href="/collections" className="text-sm font-medium text-gray-700 hover:text-accent-walnut hover:bg-orange-100 px-4 py-2 rounded-full transition-all duration-300 transform hover:scale-105 hover:-translate-y-0.5 shadow-md hover:shadow-lg">
               Our Collections
             </Link>
@@ -406,11 +403,96 @@ export default function Navbar() {
             <Link href="/collections/garden" className="text-sm font-medium text-gray-700 hover:text-accent-walnut hover:bg-orange-100 px-4 py-2 rounded-full transition-all duration-300 transform hover:scale-105 hover:-translate-y-0.5 shadow-md hover:shadow-lg">
               Garden
             </Link>
-            <Link href="/collections/shop-by-style" className="text-sm font-medium text-gray-700 hover:text-accent-walnut hover:bg-orange-100 px-4 py-2 rounded-full transition-all duration-300 transform hover:scale-105 hover:-translate-y-0.5 shadow-md hover:shadow-lg">
-              Shop By Style
-            </Link>
             <Link href="/collections/clearance-sale" className="text-sm font-bold text-red-600 hover:text-red-700 hover:bg-red-100 px-4 py-2 rounded-full transition-all duration-300 transform hover:scale-110 hover:-translate-y-0.5 shadow-md hover:shadow-lg animate-pulse">
               Clearance Sale
+            </Link>
+          </nav>
+          
+          {/* Large Tablet Navigation */}
+          <nav className="hidden lg:flex xl:hidden justify-center space-x-6 py-3 px-2">
+            <Link href="/collections" className="text-xs font-medium text-gray-700 hover:text-accent-walnut hover:bg-orange-100 px-3 py-1.5 rounded-full transition-all duration-300">
+              Our Collections
+            </Link>
+            <Link href="/collections/furniture" className="text-xs font-medium text-gray-700 hover:text-accent-walnut hover:bg-orange-100 px-3 py-1.5 rounded-full transition-all duration-300">
+              Furniture
+            </Link>
+            <Link href="/collections/lighting" className="text-xs font-medium text-gray-700 hover:text-accent-walnut hover:bg-orange-100 px-3 py-1.5 rounded-full transition-all duration-300">
+              Lighting
+            </Link>
+            <Link href="/collections/decor" className="text-xs font-medium text-gray-700 hover:text-accent-walnut hover:bg-orange-100 px-3 py-1.5 rounded-full transition-all duration-300">
+              Decor
+            </Link>
+            <Link href="/collections/garden" className="text-xs font-medium text-gray-700 hover:text-accent-walnut hover:bg-orange-100 px-3 py-1.5 rounded-full transition-all duration-300">
+              Garden
+            </Link>
+            <Link href="/collections/clearance-sale" className="text-xs font-bold text-red-600 hover:text-red-700 hover:bg-red-100 px-3 py-1.5 rounded-full transition-all duration-300">
+              Clearance Sale
+            </Link>
+          </nav>
+          
+          {/* Small Tablet Navigation */}
+          <nav className="hidden md:flex lg:hidden justify-center space-x-2 py-3 px-2">
+            <Link href="/collections" className="text-xs font-medium text-gray-700 hover:text-accent-walnut hover:bg-orange-100 px-2 py-1 rounded-full transition-all duration-300">
+              Collections
+            </Link>
+            <Link href="/collections/furniture" className="text-xs font-medium text-gray-700 hover:text-accent-walnut hover:bg-orange-100 px-2 py-1 rounded-full transition-all duration-300">
+              Furniture
+            </Link>
+            <Link href="/collections/lighting" className="text-xs font-medium text-gray-700 hover:text-accent-walnut hover:bg-orange-100 px-2 py-1 rounded-full transition-all duration-300">
+              Lighting
+            </Link>
+            <Link href="/collections/decor" className="text-xs font-medium text-gray-700 hover:text-accent-walnut hover:bg-orange-100 px-2 py-1 rounded-full transition-all duration-300">
+              Decor
+            </Link>
+            <Link href="/collections/garden" className="text-xs font-medium text-gray-700 hover:text-accent-walnut hover:bg-orange-100 px-2 py-1 rounded-full transition-all duration-300">
+              Garden
+            </Link>
+            <Link href="/collections/clearance-sale" className="text-xs font-bold text-red-600 hover:text-red-700 hover:bg-red-100 px-2 py-1 rounded-full transition-all duration-300">
+              Sale
+            </Link>
+          </nav>
+          
+          {/* Large Mobile Navigation */}
+          <nav className="hidden sm:flex md:hidden justify-center space-x-1 py-2 px-1 overflow-x-auto">
+            <Link href="/collections" className="text-xs font-medium text-gray-700 hover:text-accent-walnut hover:bg-orange-100 px-1.5 py-1 rounded-full transition-all duration-300 whitespace-nowrap">
+              Collections
+            </Link>
+            <Link href="/collections/furniture" className="text-xs font-medium text-gray-700 hover:text-accent-walnut hover:bg-orange-100 px-1.5 py-1 rounded-full transition-all duration-300 whitespace-nowrap">
+              Furniture
+            </Link>
+            <Link href="/collections/lighting" className="text-xs font-medium text-gray-700 hover:text-accent-walnut hover:bg-orange-100 px-1.5 py-1 rounded-full transition-all duration-300 whitespace-nowrap">
+              Lighting
+            </Link>
+            <Link href="/collections/decor" className="text-xs font-medium text-gray-700 hover:text-accent-walnut hover:bg-orange-100 px-1.5 py-1 rounded-full transition-all duration-300 whitespace-nowrap">
+              Decor
+            </Link>
+            <Link href="/collections/garden" className="text-xs font-medium text-gray-700 hover:text-accent-walnut hover:bg-orange-100 px-1.5 py-1 rounded-full transition-all duration-300 whitespace-nowrap">
+              Garden
+            </Link>
+            <Link href="/collections/clearance-sale" className="text-xs font-bold text-red-600 hover:text-red-700 hover:bg-red-100 px-1.5 py-1 rounded-full transition-all duration-300 whitespace-nowrap">
+              Sale
+            </Link>
+          </nav>
+          
+          {/* Small Mobile Navigation */}
+          <nav className="flex sm:hidden justify-center space-x-1 py-2 px-1 overflow-x-auto">
+            <Link href="/collections" className="text-xs font-medium text-gray-700 hover:text-accent-walnut hover:bg-orange-100 px-1 py-0.5 rounded transition-all duration-300 whitespace-nowrap">
+              Collections
+            </Link>
+            <Link href="/collections/furniture" className="text-xs font-medium text-gray-700 hover:text-accent-walnut hover:bg-orange-100 px-1 py-0.5 rounded transition-all duration-300 whitespace-nowrap">
+              Furniture
+            </Link>
+            <Link href="/collections/lighting" className="text-xs font-medium text-gray-700 hover:text-accent-walnut hover:bg-orange-100 px-1 py-0.5 rounded transition-all duration-300 whitespace-nowrap">
+              Lighting
+            </Link>
+            <Link href="/collections/decor" className="text-xs font-medium text-gray-700 hover:text-accent-walnut hover:bg-orange-100 px-1 py-0.5 rounded transition-all duration-300 whitespace-nowrap">
+              Decor
+            </Link>
+            <Link href="/collections/garden" className="text-xs font-medium text-gray-700 hover:text-accent-walnut hover:bg-orange-100 px-1 py-0.5 rounded transition-all duration-300 whitespace-nowrap">
+              Garden
+            </Link>
+            <Link href="/collections/clearance-sale" className="text-xs font-bold text-red-600 hover:text-red-700 hover:bg-red-100 px-1 py-0.5 rounded transition-all duration-300 whitespace-nowrap">
+              Sale
             </Link>
           </nav>
         </div>
