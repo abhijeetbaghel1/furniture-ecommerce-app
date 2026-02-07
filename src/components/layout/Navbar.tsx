@@ -43,71 +43,42 @@ const NAV_ITEMS: NavItem[] = [
   {
     label: 'Our Collections',
     href: '/collections',
-    subItems: [
-      { label: 'New Arrivals', href: '/collections/new-arrivals' },
-      { label: 'Best Sellers', href: '/collections/best-sellers' },
-      { label: 'Featured', href: '/collections/featured' },
-    ],
   },
   {
     label: 'Furniture',
     href: '/collections/furniture',
-    subItems: [
-      { label: 'Sofas', href: '/collections/sofas' },
-      { label: 'Chairs', href: '/collections/chairs' },
-      { label: 'Tables', href: '/collections/tables' },
-      { label: 'Beds', href: '/collections/beds' },
-      { label: 'Storage', href: '/collections/storage' },
-    ],
   },
   {
     label: 'Lighting',
     href: '/collections/lighting',
-    subItems: [
-      { label: 'Ceiling Lights', href: '/collections/ceiling-lights' },
-      { label: 'Table Lamps', href: '/collections/table-lamps' },
-      { label: 'Floor Lamps', href: '/collections/floor-lamps' },
-      { label: 'Wall Lights', href: '/collections/wall-lights' },
-    ],
   },
   {
     label: 'Decor',
     href: '/collections/decor',
-    subItems: [
-      { label: 'Wall Art', href: '/collections/wall-art' },
-      { label: 'Mirrors', href: '/collections/mirrors' },
-      { label: 'Cushions', href: '/collections/cushions' },
-      { label: 'Vases', href: '/collections/vases' },
-    ],
   },
   {
     label: 'Garden',
     href: '/collections/garden',
-    
-    subItems: [
-      { label: 'Outdoor Furniture', href: '/collections/outdoor-furniture' },
-      { label: 'Planters', href: '/collections/planters' },
-      { label: 'Garden Decor', href: '/collections/garden-decor' },
-    ],
   },
   {
     label: 'Shop By Style',
     href: '/collections/shop-by-style',
-    subItems: [
-      { label: 'Modern', href: '/collections/modern' },
-      { label: 'Contemporary', href: '/collections/contemporary' },
-      { label: 'Minimalist', href: '/collections/minimalist' },
-      { label: 'Scandinavian', href: '/collections/scandinavian' },
-    ],
   },
   {
     label: 'Clearance Sale',
     href: '/collections/clearance-sale',
-    subItems: [
-      { label: 'Furniture Deals', href: '/collections/furniture-deals' },
-      { label: 'Lighting Deals', href: '/collections/lighting-deals' },
-      { label: 'Decor Deals', href: '/collections/decor-deals' },
-    ],
+  },
+  {
+    label: 'Account',
+    href: '/account',
+  },
+  {
+    label: 'Wishlist',
+    href: '/wishlist',
+  },
+  {
+    label: 'Cart',
+    href: '/cart',
   },
 ];
 
@@ -214,14 +185,14 @@ function MobileMenu({
 
   return (
     <div 
-      className={`fixed inset-0 z-50 overflow-y-auto bg-white transform transition-all duration-300 ease-in-out ${
+      className={`fixed inset-0 z-50 overflow-y-auto bg-gradient-to-b from-orange-50 to-amber-50 transform transition-all duration-300 ease-in-out ${
         isAnimating ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-full'
       }`}
     >
-      <div className="flex items-center justify-between p-4 border-b border-gray-200 bg-white sticky top-0 z-10 shadow-sm">
+      <div className="flex items-center justify-between p-4 border-b border-orange-200 bg-white/80 backdrop-blur-sm sticky top-0 z-10 shadow-sm">
         <div className="flex items-center space-x-3 group">
           {/* Circular Logo with Your Image */}
-          <div className="w-12 h-12 rounded-full bg-accent-walnut flex items-center justify-center overflow-hidden">
+          <div className="w-12 h-12 rounded-full bg-accent-walnut flex items-center justify-center overflow-hidden shadow-lg ring-2 ring-orange-300">
             <img 
               src="/das.png.png" 
               alt="Das Cane Art Logo" 
@@ -244,17 +215,17 @@ function MobileMenu({
         </div>
         <button 
           onClick={onClose}
-          className="p-2 text-gray-500 hover:text-accent-walnut transition-colors duration-200 hover:bg-gray-100 rounded-full"
+          className="p-2 text-gray-500 hover:text-accent-walnut transition-colors duration-200 hover:bg-orange-100 rounded-full"
         >
           <XMarkIcon className="h-6 w-6" />
         </button>
       </div>
 
-      <div className="divide-y divide-gray-200">
+      <div className="divide-y divide-orange-200">
         {items.map((item) => (
-          <div key={item.href} className="border-b border-gray-100">
+          <div key={item.href} className="border-b border-orange-100">
             <div 
-              className="flex items-center justify-between px-4 py-4 text-gray-900 font-medium transition-colors duration-200 hover:bg-gray-50"
+              className="flex items-center justify-between px-4 py-4 text-gray-900 font-medium transition-all duration-200 hover:bg-orange-100"
               onClick={() => {
                 if (item.subItems && item.subItems.length > 0) {
                   setActiveSubMenu(activeSubMenu === item.label ? null : item.label);
@@ -272,11 +243,15 @@ function MobileMenu({
                   }
                 }}
               >
-                {item.label}
+                {item.label === 'Clearance Sale' ? (
+                  <span className="text-red-600 font-bold">{item.label}</span>
+                ) : (
+                  item.label
+                )}
               </Link>
               {item.subItems && item.subItems.length > 0 && (
                 <ChevronDown 
-                  className={`h-5 w-5 transition-transform ${
+                  className={`h-5 w-5 transition-transform text-orange-500 ${
                     activeSubMenu === item.label ? 'transform rotate-180' : ''
                   }`}
                 />
@@ -284,12 +259,12 @@ function MobileMenu({
             </div>
             
             {item.subItems && item.subItems.length > 0 && activeSubMenu === item.label && (
-              <div className="bg-gray-50 pl-6">
+              <div className="bg-orange-50 pl-6">
                 {item.subItems.map((subItem) => (
                   <Link
                     key={subItem.href}
                     href={subItem.href}
-                    className="block py-3 px-4 text-sm text-gray-700 hover:bg-gray-100"
+                    className="block py-3 px-4 text-sm text-gray-700 hover:bg-orange-100 transition-all duration-200"
                     onClick={onClose}
                   >
                     {subItem.label}
@@ -301,18 +276,18 @@ function MobileMenu({
         ))}
       </div>
 
-      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4">
+      <div className="fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-sm border-t border-orange-200 p-4">
         <div className="flex justify-between items-center">
           <Link 
             href="/account" 
-            className="text-gray-700 hover:text-accent-walnut"
+            className="text-gray-700 hover:text-accent-walnut transition-colors duration-200"
             onClick={onClose}
           >
             My Account
           </Link>
           <Link 
             href="/contact" 
-            className="text-gray-700 hover:text-accent-walnut"
+            className="text-gray-700 hover:text-accent-walnut transition-colors duration-200"
             onClick={onClose}
           >
             Contact Us
