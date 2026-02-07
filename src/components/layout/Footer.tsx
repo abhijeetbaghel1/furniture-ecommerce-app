@@ -77,17 +77,16 @@ export default function Footer() {
               className="space-y-6"
             >
               <div>
-                <h3 className="text-2xl font-bold mb-2">{siteConfig.brand}</h3>
-                <p className="text-neutral-400">Elevating your space with timeless design and exceptional quality.</p>
+                <Link href="/" className="block">
+                  <span className="text-2xl font-serif font-bold tracking-tight">
+                    {siteConfig.brand}
+                  </span>
+                </Link>
+                <p className="text-neutral-400 mt-2">Elevating your space with timeless design and exceptional quality.</p>
+                <p className="text-neutral-400 mt-1">
+                  {siteConfig.tagline}
+                </p>
               </div>
-              <Link href="/" className="block">
-                <span className="text-2xl font-serif font-bold tracking-tight">
-                  {siteConfig.brand}
-                </span>
-              </Link>
-              <p className="text-neutral-400">
-                {siteConfig.tagline}
-              </p>
               
               {/* Contact Info */}
               <div className="space-y-3 pt-4">

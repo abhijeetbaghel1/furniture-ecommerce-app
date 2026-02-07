@@ -219,13 +219,29 @@ function MobileMenu({
       }`}
     >
       <div className="flex items-center justify-between p-4 border-b border-gray-200 bg-white sticky top-0 z-10 shadow-sm">
-        <Link 
-          href="/" 
-          className="text-xl font-serif font-bold text-gray-900"
-          onClick={onClose}
-        >
-          {siteConfig.brand}
-        </Link>
+        <div className="flex items-center space-x-3 group">
+          {/* Circular Logo with Your Image */}
+          <div className="w-12 h-12 rounded-full bg-accent-walnut flex items-center justify-center overflow-hidden">
+            <img 
+              src="/das.png.png" 
+              alt="Das Cane Art Logo" 
+              className="w-full h-full object-cover"
+            />
+          </div>
+          {/* Brand Text */}
+          <Link 
+            href="/" 
+            className="text-xl font-serif font-bold text-gray-900 tracking-wider hover:text-accent-walnut transition-all duration-300 transform hover:scale-105"
+            onClick={onClose}
+          >
+            <span className="relative">
+              Das
+              <span className="text-accent-walnut">Cane</span>
+              Art
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent-walnut transition-all duration-300 group-hover:w-full"></span>
+            </span>
+          </Link>
+        </div>
         <button 
           onClick={onClose}
           className="p-2 text-gray-500 hover:text-accent-walnut transition-colors duration-200 hover:bg-gray-100 rounded-full"
@@ -313,7 +329,6 @@ export default function Navbar() {
   const totalItems = getTotalItems();
   const { items: wishlistItems } = useWishlist();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [mobileSubMenu, setMobileSubMenu] = useState<string | null>(null);
   // Close mobile menu when route changes
@@ -322,63 +337,75 @@ export default function Navbar() {
   }, [pathname]);
 
   return (
-    <header className="w-full bg-[#ffd199] border-b sticky top-0 z-40">
+    <header className="w-full bg-gradient-to-r from-amber-50 via-white to-orange-50 border-b border-orange-200 sticky top-0 z-40 shadow-lg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Top Bar */}
-        <div className="flex justify-between it ems-center h-16">
+        <div className="flex justify-between items-center h-16">
           {/* Mobile menu button */}
           <div className="flex items-center md:hidden">
             <button
               type="button"
-              className="p-2 text-gray-700 hover:text-accent-walnut"
+              className="p-2 text-gray-700 hover:text-accent-walnut transition-all duration-300 hover:bg-orange-100 rounded-lg"
               onClick={() => setMobileMenuOpen(true)}
             >
               <Bars3Icon className="h-6 w-6" />
             </button>
           </div>
 
-          {/* Logo */}
-          <div className="flex-shrink-0
-          ">
-            <Link href="/" className="text-2xl font-serif font-bold text-gray-900">
-              {siteConfig.brand}
+          {/* Logo with Circular Design and Das Cane Art Text */}
+          <div className="flex items-center space-x-3 flex-shrink-0 group">
+            {/* Circular Logo with Your Image */}
+            <div className="w-14 h-14 rounded-full bg-accent-walnut flex items-center justify-center overflow-hidden shadow-lg ring-2 ring-orange-300">
+              <img 
+                src="/das.png.png" 
+                alt="Das Cane Art Logo" 
+                className="w-full h-full object-cover"
+              />
+            </div>
+            {/* Brand Text */}
+            <Link href="/" className="text-2xl font-serif font-bold text-gray-900 tracking-wider hover:text-accent-walnut transition-all duration-300 transform hover:scale-105">
+              <span className="relative">
+                Das
+                <span className="text-accent-walnut">Cane</span>
+                Art
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent-walnut transition-all duration-300 group-hover:w-full"></span>
+              </span>
             </Link>
           </div>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-1 lg:space-x-2 xl:space-x-4 mx-4">
-            {NAV_ITEMS.map((item, index) => (
-              <NavItem key={`${item.href}-${index}`} item={item} />
-            ))}
-          </nav>
+          {/* Search Bar - Always Visible */}
+          <div className="hidden md:flex flex-1 max-w-md mx-6">
+            <div className="relative w-full group">
+              <input
+                type="text"
+                placeholder="Search for premium furniture..."
+                className="w-full pl-4 pr-10 py-3 border-2 border-orange-200 rounded-full focus:outline-none focus:ring-2 focus:ring-orange-300 focus:border-transparent bg-white/80 backdrop-blur-sm transition-all duration-300"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+              <SearchIcon className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-orange-400 group-focus-within:text-orange-500 transition-colors duration-300" />
+            </div>
+          </div>
 
           {/* Right side icons */}
           <div className="flex items-center space-x-4">
-            <button
-              type="button"
-              className="hidden md:block p-2 text-gray-700 hover:text-accent-walnut"
-              onClick={() => setSearchOpen(!searchOpen)}
-            >
-              <SearchIcon className="w-5 h-5" />
-            </button>
-
-            <Link href="/account" className="p-2 text-gray-700 hover:text-accent-walnut">
+            <Link href="/account" className="p-2 text-gray-700 hover:text-accent-walnut hover:bg-orange-100 rounded-full transition-all duration-300 transform hover:scale-110">
               <User className="w-5 h-5" />
             </Link>
 
-            <Link href="/wishlist" className="p-2 text-gray-700 hover:text-accent-walnut relative">
+            <Link href="/wishlist" className="p-2 text-gray-700 hover:text-accent-walnut hover:bg-orange-100 rounded-full transition-all duration-300 transform hover:scale-110 relative">
               <HeartIcon className="w-5 h-5" />
               {wishlistItems.length > 0 && (
-                <span className="absolute -top-1 -right-1 bg-accent-walnut text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                <span className="absolute -top-1 -right-1 bg-gradient-to-r from-orange-500 to-orange-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center shadow-lg animate-pulse">
                   {wishlistItems.length}
                 </span>
               )}
             </Link>
 
-            <Link href="/cart" className="p-2 text-gray-700 hover:text-accent-walnut relative">
+            <Link href="/cart" className="p-2 text-gray-700 hover:text-accent-walnut hover:bg-orange-100 rounded-full transition-all duration-300 transform hover:scale-110 relative">
               <ShoppingBag className="w-5 h-5" />
               {totalItems > 0 && (
-                <span className="absolute -top-1 -right-1 bg-accent-walnut text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                <span className="absolute -top-1 -right-1 bg-gradient-to-r from-orange-500 to-orange-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center shadow-lg animate-pulse">
                   {totalItems}
                 </span>
               )}
@@ -386,28 +413,46 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Desktop Search Bar */}
-        {searchOpen && (
-          <div className="hidden md:block pb-4">
-            <div className="relative max-w-2xl mx-auto">
-              <input
-                type="text"
-                placeholder="Search for products..."
-                className="w-full pl-4 pr-10 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-accent-walnut focus:border-transparent"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-              />
-              <button 
-                type="button"
-                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-accent-walnut"
-                onClick={() => setSearchOpen(false)}
-                aria-label="Close search"
-              >
-                <XMarkIcon className="h-5 w-5" />
-              </button>
-            </div>
+        {/* Navigation Links Below */}
+        <div className="border-t border-orange-200 bg-gradient-to-r from-orange-50 to-amber-50">
+          <nav className="hidden md:flex justify-center space-x-8 py-4">
+            <Link href="/collections" className="text-sm font-medium text-gray-700 hover:text-accent-walnut hover:bg-orange-100 px-4 py-2 rounded-full transition-all duration-300 transform hover:scale-105 hover:-translate-y-0.5 shadow-md hover:shadow-lg">
+              Our Collections
+            </Link>
+            <Link href="/collections/furniture" className="text-sm font-medium text-gray-700 hover:text-accent-walnut hover:bg-orange-100 px-4 py-2 rounded-full transition-all duration-300 transform hover:scale-105 hover:-translate-y-0.5 shadow-md hover:shadow-lg">
+              Furniture
+            </Link>
+            <Link href="/collections/lighting" className="text-sm font-medium text-gray-700 hover:text-accent-walnut hover:bg-orange-100 px-4 py-2 rounded-full transition-all duration-300 transform hover:scale-105 hover:-translate-y-0.5 shadow-md hover:shadow-lg">
+              Lighting
+            </Link>
+            <Link href="/collections/decor" className="text-sm font-medium text-gray-700 hover:text-accent-walnut hover:bg-orange-100 px-4 py-2 rounded-full transition-all duration-300 transform hover:scale-105 hover:-translate-y-0.5 shadow-md hover:shadow-lg">
+              Decor
+            </Link>
+            <Link href="/collections/garden" className="text-sm font-medium text-gray-700 hover:text-accent-walnut hover:bg-orange-100 px-4 py-2 rounded-full transition-all duration-300 transform hover:scale-105 hover:-translate-y-0.5 shadow-md hover:shadow-lg">
+              Garden
+            </Link>
+            <Link href="/collections/shop-by-style" className="text-sm font-medium text-gray-700 hover:text-accent-walnut hover:bg-orange-100 px-4 py-2 rounded-full transition-all duration-300 transform hover:scale-105 hover:-translate-y-0.5 shadow-md hover:shadow-lg">
+              Shop By Style
+            </Link>
+            <Link href="/collections/clearance-sale" className="text-sm font-bold text-red-600 hover:text-red-700 hover:bg-red-100 px-4 py-2 rounded-full transition-all duration-300 transform hover:scale-110 hover:-translate-y-0.5 shadow-md hover:shadow-lg animate-pulse">
+              Clearance Sale
+            </Link>
+          </nav>
+        </div>
+
+        {/* Mobile Search */}
+        <div className="md:hidden py-3 border-t border-orange-200 bg-gradient-to-r from-orange-50 to-amber-50">
+          <div className="relative">
+            <input
+              type="text"
+              placeholder="Search for premium furniture..."
+              className="w-full pl-4 pr-10 py-3 border-2 border-orange-200 rounded-full focus:outline-none focus:ring-2 focus:ring-orange-300 focus:border-transparent bg-white/80 backdrop-blur-sm transition-all duration-300"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+            <SearchIcon className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-orange-400 transition-colors duration-300" />
           </div>
-        )}
+        </div>
       </div>
       
       {/* Mobile Menu */}

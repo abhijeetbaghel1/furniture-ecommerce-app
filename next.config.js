@@ -17,6 +17,7 @@ const nextConfig = {
         hostname: '**',
       },
     ],
+    unoptimized: true,
   },
   // Enable static exports for Netlify
   output: 'export',

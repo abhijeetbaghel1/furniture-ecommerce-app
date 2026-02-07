@@ -185,7 +185,7 @@ export default function HeroBanner() {
                         priority={index < 2} // Preload first 2 images
                         sizes="(max-width: 1024px) 80vw, 60vw"
                         quality={90}
-                        onLoadingComplete={() => console.log('Image loaded:', image.src)}
+                        onLoad={() => console.log('Image loaded:', image.src)}
                         onError={(e) => {
                           console.error('Error loading image:', image.src);
                           const target = e.currentTarget;
