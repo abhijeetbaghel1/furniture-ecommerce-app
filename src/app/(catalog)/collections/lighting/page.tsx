@@ -1,15 +1,9 @@
 'use client';
 
-import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Heart, ShoppingBag, Eye } from 'lucide-react';
-
-export const metadata: Metadata = {
-  title: 'Lighting - Das Cane Art',
-  description: 'Shop our lighting collection including chandeliers, pendant lights, floor lamps, and table lamps. Illuminate your space with style.',
-  keywords: 'lighting, chandeliers, pendant lights, floor lamps, table lamps',
-};
+import { useWishlist } from '@/state/wishlist';
 
 // Mock product data for lighting
 const lightingProducts = [

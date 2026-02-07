@@ -1,15 +1,9 @@
 'use client';
 
-import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Heart, ShoppingBag, Eye } from 'lucide-react';
-
-export const metadata: Metadata = {
-  title: 'Dining Room Furniture - Das Cane Art',
-  description: 'Shop our dining room collection including dining tables, chairs, sets, buffets, and bar stools. Create memorable dining experiences.',
-  keywords: 'dining room furniture, dining tables, dining chairs, dining sets, buffets',
-};
+import { useWishlist } from '@/state/wishlist';
 
 // Mock product data for dining room
 const diningRoomProducts = [

@@ -1,15 +1,9 @@
 'use client';
 
-import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Heart, ShoppingBag, Eye } from 'lucide-react';
-
-export const metadata: Metadata = {
-  title: 'Office Furniture - Das Cane Art',
-  description: 'Shop our office collection including executive desks, office chairs, bookcases, and storage solutions. Create your productive workspace.',
-  keywords: 'office furniture, executive desks, office chairs, bookcases, filing cabinets',
-};
+import { useWishlist } from '@/state/wishlist';
 
 // Mock product data for office
 const officeProducts = [

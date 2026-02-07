@@ -1,15 +1,9 @@
 'use client';
 
-import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Heart, ShoppingBag, Eye } from 'lucide-react';
-
-export const metadata: Metadata = {
-  title: 'Outdoor Furniture - Das Cane Art',
-  description: 'Shop our outdoor collection including patio sets, outdoor sofas, garden benches, and weather-resistant furniture. Create your perfect outdoor space.',
-  keywords: 'outdoor furniture, patio sets, garden furniture, outdoor dining, lounge chairs',
-};
+import { useWishlist } from '@/state/wishlist';
 
 // Mock product data for outdoor
 const outdoorProducts = [

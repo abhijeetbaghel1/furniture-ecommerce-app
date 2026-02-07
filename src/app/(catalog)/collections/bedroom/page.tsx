@@ -1,15 +1,9 @@
 'use client';
 
-import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Heart, ShoppingBag, Eye } from 'lucide-react';
-
-export const metadata: Metadata = {
-  title: 'Bedroom Furniture - Das Cane Art',
-  description: 'Shop our bedroom collection including king size beds, wardrobes, dressers, nightstands, and more. Create your perfect sanctuary.',
-  keywords: 'bedroom furniture, beds, wardrobes, dressers, nightstands',
-};
+import { useWishlist } from '@/state/wishlist';
 
 // Mock product data for bedroom
 const bedroomProducts = [
