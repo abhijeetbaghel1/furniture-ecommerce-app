@@ -385,26 +385,42 @@ export default function Navbar() {
         </div>
 
         {/* Navigation Links Below */}
-        <div className="border-t border-orange-200 bg-gradient-to-r from-orange-50 to-amber-50">
+        <div className="border-t border-orange-200 bg-gradient-to-r from-orange-50 to-amber-50 relative overflow-hidden">
+          {/* Animated Background Pattern */}
+          <div className="absolute inset-0 opacity-5">
+            <div className="absolute inset-0 bg-gradient-to-r from-orange-100/20 via-amber-100/10 to-orange-50/5"></div>
+            <div className="absolute inset-0" style={{
+              backgroundImage: `repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(251, 146, 60, 0.03) 10px, transparent 20px)`,
+              backgroundSize: '28px 28px'
+            }}></div>
+          </div>
+          
           {/* Desktop Navigation */}
-          <nav className="hidden xl:flex justify-center space-x-8 py-4">
-            <Link href="/collections" className="text-sm font-medium text-gray-700 hover:text-accent-walnut hover:bg-orange-100 px-4 py-2 rounded-full transition-all duration-300 transform hover:scale-105 hover:-translate-y-0.5 shadow-md hover:shadow-lg">
-              Our Collections
+          <nav className="hidden xl:flex justify-center space-x-8 py-4 relative z-10">
+            <Link href="/collections" className="text-sm font-medium text-gray-700 hover:text-accent-walnut hover:bg-orange-100 px-4 py-2 rounded-full transition-all duration-300 transform hover:scale-105 hover:-translate-y-0.5 shadow-md hover:shadow-lg relative overflow-hidden group">
+              <span className="relative z-10">Our Collections</span>
+              <span className="absolute inset-0 bg-gradient-to-r from-orange-200 to-orange-100 opacity-0 transition-all duration-300 group-hover:opacity-100"></span>
             </Link>
-            <Link href="/collections/furniture" className="text-sm font-medium text-gray-700 hover:text-accent-walnut hover:bg-orange-100 px-4 py-2 rounded-full transition-all duration-300 transform hover:scale-105 hover:-translate-y-0.5 shadow-md hover:shadow-lg">
-              Furniture
+            <Link href="/collections/furniture" className="text-sm font-medium text-gray-700 hover:text-accent-walnut hover:bg-orange-100 px-4 py-2 rounded-full transition-all duration-300 transform hover:scale-105 hover:-translate-y-0.5 shadow-md hover:shadow-lg relative overflow-hidden group">
+              <span className="relative z-10">Furniture</span>
+              <span className="absolute inset-0 bg-gradient-to-r from-orange-200 to-orange-100 opacity-0 transition-all duration-300 group-hover:opacity-100"></span>
             </Link>
-            <Link href="/collections/lighting" className="text-sm font-medium text-gray-700 hover:text-accent-walnut hover:bg-orange-100 px-4 py-2 rounded-full transition-all duration-300 transform hover:scale-105 hover:-translate-y-0.5 shadow-md hover:shadow-lg">
-              Lighting
+            <Link href="/collections/lighting" className="text-sm font-medium text-gray-700 hover:text-accent-walnut hover:bg-orange-100 px-4 py-2 rounded-full transition-all duration-300 transform hover:scale-105 hover:-translate-y-0.5 shadow-md hover:shadow-lg relative overflow-hidden group">
+              <span className="relative z-10">Lighting</span>
+              <span className="absolute inset-0 bg-gradient-to-r from-orange-200 to-orange-100 opacity-0 transition-all duration-300 group-hover:opacity-100"></span>
             </Link>
-            <Link href="/collections/decor" className="text-sm font-medium text-gray-700 hover:text-accent-walnut hover:bg-orange-100 px-4 py-2 rounded-full transition-all duration-300 transform hover:scale-105 hover:-translate-y-0.5 shadow-md hover:shadow-lg">
-              Decor
+            <Link href="/collections/decor" className="text-sm font-medium text-gray-700 hover:text-accent-walnut hover:bg-orange-100 px-4 py-2 rounded-full transition-all duration-300 transform hover:scale-105 hover:-translate-y-0.5 shadow-md hover:shadow-lg relative overflow-hidden group">
+              <span className="relative z-10">Decor</span>
+              <span className="absolute inset-0 bg-gradient-to-r from-orange-200 to-orange-100 opacity-0 transition-all duration-300 group-hover:opacity-100"></span>
             </Link>
-            <Link href="/collections/garden" className="text-sm font-medium text-gray-700 hover:text-accent-walnut hover:bg-orange-100 px-4 py-2 rounded-full transition-all duration-300 transform hover:scale-105 hover:-translate-y-0.5 shadow-md hover:shadow-lg">
-              Garden
+            <Link href="/collections/garden" className="text-sm font-medium text-gray-700 hover:text-accent-walnut hover:bg-orange-100 px-4 py-2 rounded-full transition-all duration-300 transform hover:scale-105 hover:-translate-y-0.5 shadow-md hover:shadow-lg relative overflow-hidden group">
+              <span className="relative z-10">Garden</span>
+              <span className="absolute inset-0 bg-gradient-to-r from-orange-200 to-orange-100 opacity-0 transition-all duration-300 group-hover:opacity-100"></span>
             </Link>
-            <Link href="/collections/clearance-sale" className="text-sm font-bold text-red-600 hover:text-red-700 hover:bg-red-100 px-4 py-2 rounded-full transition-all duration-300 transform hover:scale-110 hover:-translate-y-0.5 shadow-md hover:shadow-lg animate-pulse">
-              Clearance Sale
+            <Link href="/collections/clearance-sale" className="text-sm font-bold text-red-600 hover:text-red-700 hover:bg-red-100 px-4 py-2 rounded-full transition-all duration-300 transform hover:scale-110 hover:-translate-y-0.5 shadow-md hover:shadow-lg relative overflow-hidden group animate-pulse">
+              <span className="relative z-10">Clearance Sale</span>
+              <span className="absolute inset-0 bg-gradient-to-r from-red-200 to-red-100 opacity-0 transition-all duration-300 group-hover:opacity-100"></span>
+              <span className="absolute -top-1 -right-1 w-2 h-2 bg-red-500 rounded-full opacity-75 animate-ping"></span>
             </Link>
           </nav>
           
@@ -453,46 +469,60 @@ export default function Navbar() {
           </nav>
           
           {/* Large Mobile Navigation */}
-          <nav className="hidden sm:flex md:hidden justify-center space-x-1 py-2 px-1 overflow-x-auto">
-            <Link href="/collections" className="text-xs font-medium text-gray-700 hover:text-accent-walnut hover:bg-orange-100 px-1.5 py-1 rounded-full transition-all duration-300 whitespace-nowrap">
-              Collections
+          <nav className="hidden sm:flex md:hidden justify-center space-x-1 py-2 px-1 overflow-x-auto relative z-10">
+            <Link href="/collections" className="text-sm font-medium text-gray-700 hover:text-accent-walnut hover:bg-orange-100 px-1.5 py-1 rounded-full transition-all duration-300 whitespace-nowrap relative overflow-hidden group">
+              <span className="relative z-10">Collections</span>
+              <span className="absolute inset-0 bg-gradient-to-r from-orange-200 to-orange-100 opacity-0 transition-all duration-300 group-hover:opacity-100"></span>
             </Link>
-            <Link href="/collections/furniture" className="text-xs font-medium text-gray-700 hover:text-accent-walnut hover:bg-orange-100 px-1.5 py-1 rounded-full transition-all duration-300 whitespace-nowrap">
-              Furniture
+            <Link href="/collections/furniture" className="text-sm font-medium text-gray-700 hover:text-accent-walnut hover:bg-orange-100 px-1.5 py-1 rounded-full transition-all duration-300 whitespace-nowrap relative overflow-hidden group">
+              <span className="relative z-10">Furniture</span>
+              <span className="absolute inset-0 bg-gradient-to-r from-orange-200 to-orange-100 opacity-0 transition-all duration-300 group-hover:opacity-100"></span>
             </Link>
-            <Link href="/collections/lighting" className="text-xs font-medium text-gray-700 hover:text-accent-walnut hover:bg-orange-100 px-1.5 py-1 rounded-full transition-all duration-300 whitespace-nowrap">
-              Lighting
+            <Link href="/collections/lighting" className="text-sm font-medium text-gray-700 hover:text-accent-walnut hover:bg-orange-100 px-1.5 py-1 rounded-full transition-all duration-300 whitespace-nowrap relative overflow-hidden group">
+              <span className="relative z-10">Lighting</span>
+              <span className="absolute inset-0 bg-gradient-to-r from-orange-200 to-orange-100 opacity-0 transition-all duration-300 group-hover:opacity-100"></span>
             </Link>
-            <Link href="/collections/decor" className="text-xs font-medium text-gray-700 hover:text-accent-walnut hover:bg-orange-100 px-1.5 py-1 rounded-full transition-all duration-300 whitespace-nowrap">
-              Decor
+            <Link href="/collections/decor" className="text-sm font-medium text-gray-700 hover:text-accent-walnut hover:bg-orange-100 px-1.5 py-1 rounded-full transition-all duration-300 whitespace-nowrap relative overflow-hidden group">
+              <span className="relative z-10">Decor</span>
+              <span className="absolute inset-0 bg-gradient-to-r from-orange-200 to-orange-100 opacity-0 transition-all duration-300 group-hover:opacity-100"></span>
             </Link>
-            <Link href="/collections/garden" className="text-xs font-medium text-gray-700 hover:text-accent-walnut hover:bg-orange-100 px-1.5 py-1 rounded-full transition-all duration-300 whitespace-nowrap">
-              Garden
+            <Link href="/collections/garden" className="text-sm font-medium text-gray-700 hover:text-accent-walnut hover:bg-orange-100 px-1.5 py-1 rounded-full transition-all duration-300 whitespace-nowrap relative overflow-hidden group">
+              <span className="relative z-10">Garden</span>
+              <span className="absolute inset-0 bg-gradient-to-r from-orange-200 to-orange-100 opacity-0 transition-all duration-300 group-hover:opacity-100"></span>
             </Link>
-            <Link href="/collections/clearance-sale" className="text-xs font-bold text-red-600 hover:text-red-700 hover:bg-red-100 px-1.5 py-1 rounded-full transition-all duration-300 whitespace-nowrap">
-              Sale
+            <Link href="/collections/clearance-sale" className="text-sm font-bold text-red-600 hover:text-red-700 hover:bg-red-100 px-1.5 py-1 rounded-full transition-all duration-300 whitespace-nowrap relative overflow-hidden group animate-pulse">
+              <span className="relative z-10">Sale</span>
+              <span className="absolute inset-0 bg-gradient-to-r from-red-200 to-red-100 opacity-0 transition-all duration-300 group-hover:opacity-100"></span>
+              <span className="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 bg-red-500 rounded-full opacity-75 animate-ping"></span>
             </Link>
           </nav>
           
           {/* Small Mobile Navigation */}
-          <nav className="flex sm:hidden justify-center space-x-1 py-2 px-1 overflow-x-auto">
-            <Link href="/collections" className="text-xs font-medium text-gray-700 hover:text-accent-walnut hover:bg-orange-100 px-1 py-0.5 rounded transition-all duration-300 whitespace-nowrap">
-              Collections
+          <nav className="flex sm:hidden justify-center space-x-1 py-2 px-1 overflow-x-auto relative z-10">
+            <Link href="/collections" className="text-sm font-medium text-gray-700 hover:text-accent-walnut hover:bg-orange-100 px-1 py-0.5 rounded-full transition-all duration-300 whitespace-nowrap relative overflow-hidden group">
+              <span className="relative z-10">Collections</span>
+              <span className="absolute inset-0 bg-gradient-to-r from-orange-200 to-orange-100 opacity-0 transition-all duration-300 group-hover:opacity-100"></span>
             </Link>
-            <Link href="/collections/furniture" className="text-xs font-medium text-gray-700 hover:text-accent-walnut hover:bg-orange-100 px-1 py-0.5 rounded transition-all duration-300 whitespace-nowrap">
-              Furniture
+            <Link href="/collections/furniture" className="text-sm font-medium text-gray-700 hover:text-accent-walnut hover:bg-orange-100 px-1 py-0.5 rounded-full transition-all duration-300 whitespace-nowrap relative overflow-hidden group">
+              <span className="relative z-10">Furniture</span>
+              <span className="absolute inset-0 bg-gradient-to-r from-orange-200 to-orange-100 opacity-0 transition-all duration-300 group-hover:opacity-100"></span>
             </Link>
-            <Link href="/collections/lighting" className="text-xs font-medium text-gray-700 hover:text-accent-walnut hover:bg-orange-100 px-1 py-0.5 rounded transition-all duration-300 whitespace-nowrap">
-              Lighting
+            <Link href="/collections/lighting" className="text-sm font-medium text-gray-700 hover:text-accent-walnut hover:bg-orange-100 px-1 py-0.5 rounded-full transition-all duration-300 whitespace-nowrap relative overflow-hidden group">
+              <span className="relative z-10">Lighting</span>
+              <span className="absolute inset-0 bg-gradient-to-r from-orange-200 to-orange-100 opacity-0 transition-all duration-300 group-hover:opacity-100"></span>
             </Link>
-            <Link href="/collections/decor" className="text-xs font-medium text-gray-700 hover:text-accent-walnut hover:bg-orange-100 px-1 py-0.5 rounded transition-all duration-300 whitespace-nowrap">
-              Decor
+            <Link href="/collections/decor" className="text-sm font-medium text-gray-700 hover:text-accent-walnut hover:bg-orange-100 px-1 py-0.5 rounded-full transition-all duration-300 whitespace-nowrap relative overflow-hidden group">
+              <span className="relative z-10">Decor</span>
+              <span className="absolute inset-0 bg-gradient-to-r from-orange-200 to-orange-100 opacity-0 transition-all duration-300 group-hover:opacity-100"></span>
             </Link>
-            <Link href="/collections/garden" className="text-xs font-medium text-gray-700 hover:text-accent-walnut hover:bg-orange-100 px-1 py-0.5 rounded transition-all duration-300 whitespace-nowrap">
-              Garden
+            <Link href="/collections/garden" className="text-sm font-medium text-gray-700 hover:text-accent-walnut hover:bg-orange-100 px-1 py-0.5 rounded-full transition-all duration-300 whitespace-nowrap relative overflow-hidden group">
+              <span className="relative z-10">Garden</span>
+              <span className="absolute inset-0 bg-gradient-to-r from-orange-200 to-orange-100 opacity-0 transition-all duration-300 group-hover:opacity-100"></span>
             </Link>
-            <Link href="/collections/clearance-sale" className="text-xs font-bold text-red-600 hover:text-red-700 hover:bg-red-100 px-1 py-0.5 rounded transition-all duration-300 whitespace-nowrap">
-              Sale
+            <Link href="/collections/clearance-sale" className="text-sm font-bold text-red-600 hover:text-red-700 hover:bg-red-100 px-1 py-0.5 rounded-full transition-all duration-300 whitespace-nowrap relative overflow-hidden group animate-pulse">
+              <span className="relative z-10">Sale</span>
+              <span className="absolute inset-0 bg-gradient-to-r from-red-200 to-red-100 opacity-0 transition-all duration-300 group-hover:opacity-100"></span>
+              <span className="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 bg-red-500 rounded-full opacity-75 animate-ping"></span>
             </Link>
           </nav>
         </div>
