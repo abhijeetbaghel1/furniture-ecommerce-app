@@ -41,6 +41,9 @@ const NAV_ITEMS: NavItem[] = [
     label: 'Our Collections',
     href: '/collections',
     subItems: [
+      // Furniture Collection
+      { label: 'All Furniture', href: '/collections/furniture' },
+      
       // New Arrivals Category
       { label: 'New Arrivals', href: '/collections/new-arrivals' },
       { label: 'Modern Sofa Set', href: '/collections/new-arrivals/modern-sofa' },
