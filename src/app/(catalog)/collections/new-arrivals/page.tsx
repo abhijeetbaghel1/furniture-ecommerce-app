@@ -184,13 +184,20 @@ export default function NewArrivalsPage() {
 
       {/* Products Grid */}
       <div className="max-w-7xl mx-auto px-4 py-12">
+        <div className="mb-4 text-center">
+          <p className="text-lg text-gray-600">Showing {newArrivalsProducts.length} products</p>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {newArrivalsProducts.map((product) => {
             const variant = product.variants[0];
             const inWishlist = isInWishlist(product.id, variant.id);
             
             return (
-              <div key={product.id} className="group relative bg-white rounded-lg shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden">
+              <div key={product.id} className="group relative bg-white rounded-lg shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-200">
+                {/* Debug Info */}
+                <div className="absolute top-0 left-0 bg-red-500 text-white text-xs px-1 z-20">
+                  {product.id}
+                </div>
                 {/* Product Badge */}
                 {product.badge && (
                   <div className="absolute top-4 left-4 z-10 bg-orange-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
@@ -223,6 +230,11 @@ export default function NewArrivalsPage() {
                     alt={product.title}
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.onerror = null;
+                      target.src = `data:image/svg+xml,%3Csvg width='400' height='300' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='100%25' height='100%25' fill='%23f3f4f6'/%3E%3Ctext x='50%25' y='50%25' font-family='Arial' font-size='16' fill='%239ca3af' text-anchor='middle' dy='.3em'%3E${product.title}%3C/text%3E%3C/svg%3E`;
+                    }}
                   />
                 </div>
 
