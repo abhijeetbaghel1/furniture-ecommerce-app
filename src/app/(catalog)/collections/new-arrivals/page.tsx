@@ -184,20 +184,13 @@ export default function NewArrivalsPage() {
 
       {/* Products Grid */}
       <div className="max-w-7xl mx-auto px-4 py-12">
-        <div className="mb-4 text-center">
-          <p className="text-lg text-gray-600">Showing {newArrivalsProducts.length} products</p>
-        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {newArrivalsProducts.map((product) => {
             const variant = product.variants[0];
             const inWishlist = isInWishlist(product.id, variant.id);
             
             return (
-              <div key={product.id} className="group relative bg-white rounded-lg shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-200">
-                {/* Debug Info */}
-                <div className="absolute top-0 left-0 bg-red-500 text-white text-xs px-1 z-20">
-                  {product.id}
-                </div>
+              <div key={product.id} className="group relative bg-white rounded-lg shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden">
                 {/* Product Badge */}
                 {product.badge && (
                   <div className="absolute top-4 left-4 z-10 bg-orange-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
