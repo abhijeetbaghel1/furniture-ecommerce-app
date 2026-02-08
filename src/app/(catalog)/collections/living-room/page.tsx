@@ -1,9 +1,11 @@
 'use client';
 
+import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Heart, ShoppingBag, Eye } from 'lucide-react';
 import { useWishlist } from '@/state/wishlist';
+import { useCart } from '@/state/cart';
 
 // Mock product data for living room
 const livingRoomProducts = [

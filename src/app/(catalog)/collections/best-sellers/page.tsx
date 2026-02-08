@@ -1,13 +1,17 @@
 'use client';
 
+import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Heart, ShoppingBag, Eye, Star } from 'lucide-react';
+import { useWishlist } from '@/state/wishlist';
+import { useCart } from '@/state/cart';
+import QuickViewModal from '@/components/catalog/QuickViewModal';
 
 // Mock product data for best sellers
 const bestSellersProducts = [
   {
-    id: 1,
+    id: '1',
     name: 'Classic Leather Sofa',
     slug: 'classic-leather-sofa',
     price: 65000,
@@ -17,10 +21,11 @@ const bestSellersProducts = [
     badge: 'Best Seller',
     rating: 4.8,
     reviews: 234,
-    description: 'Premium leather 3-seater sofa with classic design and superior comfort'
+    description: 'Premium leather 3-seater sofa with classic design and superior comfort',
+    variants: [{ id: 'default-1', title: 'Default', price: { amount: 65000, currency: 'INR' }, available: true }]
   },
   {
-    id: 2,
+    id: '2',
     name: 'Wooden Dining Set',
     slug: 'wooden-dining-set',
     price: 45000,
@@ -30,10 +35,11 @@ const bestSellersProducts = [
     badge: 'Best Seller',
     rating: 4.7,
     reviews: 189,
-    description: 'Solid wood dining set for 6 people with comfortable chairs'
+    description: 'Solid wood dining set for 6 people with comfortable chairs',
+    variants: [{ id: 'default-2', title: 'Default', price: { amount: 45000, currency: 'INR' }, available: true }]
   },
   {
-    id: 3,
+    id: '3',
     name: 'Coffee Table Set',
     slug: 'coffee-table-set',
     price: 15000,
@@ -43,23 +49,25 @@ const bestSellersProducts = [
     badge: 'Best Seller',
     rating: 4.6,
     reviews: 156,
-    description: 'Modern coffee table set with nested tables and glass tops'
+    description: 'Modern coffee table set with nested tables and glass tops',
+    variants: [{ id: 'default-3', title: 'Default', price: { amount: 15000, currency: 'INR' }, available: true }]
   },
   {
-    id: 4,
+    id: '4',
     name: 'Bedroom Furniture Set',
     slug: 'bedroom-furniture-set',
-    price: 55000,
-    originalPrice: 65000,
+    price: 35000,
+    originalPrice: 42000,
     image: '/api/placeholder/400/300',
     category: 'Bedroom',
     badge: 'Best Seller',
-    rating: 4.9,
-    reviews: 298,
-    description: 'Complete bedroom set with bed, wardrobe, and nightstands'
+    rating: 4.8,
+    reviews: 203,
+    description: 'Complete bedroom set with bed, wardrobe, and nightstands',
+    variants: [{ id: 'default-4', title: 'Default', price: { amount: 35000, currency: 'INR' }, available: true }]
   },
   {
-    id: 5,
+    id: '5',
     name: 'Office Desk Chair',
     slug: 'office-desk-chair',
     price: 12000,
@@ -68,11 +76,12 @@ const bestSellersProducts = [
     category: 'Office',
     badge: 'Best Seller',
     rating: 4.5,
-    reviews: 142,
-    description: 'Ergonomic office chair with lumbar support and adjustable height'
+    reviews: 145,
+    description: 'Ergonomic office chair with lumbar support and adjustable height',
+    variants: [{ id: 'default-5', title: 'Default', price: { amount: 12000, currency: 'INR' }, available: true }]
   },
   {
-    id: 6,
+    id: '6',
     name: 'TV Stand Unit',
     slug: 'tv-stand-unit',
     price: 18000,
@@ -81,11 +90,12 @@ const bestSellersProducts = [
     category: 'Living Room',
     badge: 'Best Seller',
     rating: 4.7,
-    reviews: 201,
-    description: 'Modern TV stand with storage compartments and cable management'
+    reviews: 178,
+    description: 'Modern TV stand with storage compartments and cable management',
+    variants: [{ id: 'default-6', title: 'Default', price: { amount: 18000, currency: 'INR' }, available: true }]
   },
   {
-    id: 7,
+    id: '7',
     name: 'Side Table Set',
     slug: 'side-table-set',
     price: 8000,
@@ -93,12 +103,13 @@ const bestSellersProducts = [
     image: '/api/placeholder/400/300',
     category: 'Living Room',
     badge: 'Best Seller',
-    rating: 4.4,
-    reviews: 98,
-    description: 'Set of 2 matching side tables with modern design'
+    rating: 4.6,
+    reviews: 134,
+    description: 'Set of 2 nested side tables with modern design',
+    variants: [{ id: 'default-7', title: 'Default', price: { amount: 8000, currency: 'INR' }, available: true }]
   },
   {
-    id: 8,
+    id: '8',
     name: 'Bar Cabinet',
     slug: 'bar-cabinet',
     price: 22000,
@@ -108,11 +119,51 @@ const bestSellersProducts = [
     badge: 'Best Seller',
     rating: 4.8,
     reviews: 167,
-    description: 'Elegant bar cabinet with glass doors and internal shelving'
+    description: 'Elegant bar cabinet with glass doors and internal shelving',
+    variants: [{ id: 'default-8', title: 'Default', price: { amount: 22000, currency: 'INR' }, available: true }]
   }
 ];
 
 export default function BestSellersPage() {
+  const { addItem, removeItem, isInWishlist } = useWishlist();
+  const { addItem: addToCart } = useCart();
+  const [selectedProduct, setSelectedProduct] = useState<any>(null);
+  const [isQuickViewOpen, setIsQuickViewOpen] = useState(false);
+  const [addedProducts, setAddedProducts] = useState<Set<string>>(new Set());
+
+  const handleWishlistToggle = (product: any) => {
+    const variant = product.variants[0];
+    if (isInWishlist(product.id, variant.id)) {
+      removeItem(product.id, variant.id);
+    } else {
+      addItem(product, variant);
+    }
+  };
+
+  const handleAddToCart = (product: any) => {
+    const variant = product.variants[0];
+    addToCart(product, variant, 1);
+    
+    // Show added feedback
+    setAddedProducts(prev => new Set(prev).add(product.id));
+    setTimeout(() => {
+      setAddedProducts(prev => {
+        const newSet = new Set(prev);
+        newSet.delete(product.id);
+        return newSet;
+      });
+    }, 2000);
+  };
+
+  const handleQuickView = (product: any) => {
+    setSelectedProduct(product);
+    setIsQuickViewOpen(true);
+  };
+
+  const handleCloseQuickView = () => {
+    setIsQuickViewOpen(false);
+    setSelectedProduct(null);
+  };
   return (
     <div className="min-h-screen bg-gradient-to-b from-orange-50 to-white">
       {/* Hero Section */}
@@ -141,10 +192,18 @@ export default function BestSellersPage() {
               
               {/* Quick Actions */}
               <div className="absolute top-4 right-4 z-10 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <button className="bg-white p-2 rounded-full shadow-md hover:bg-orange-50 transition-colors duration-200">
+                <button 
+                  onClick={() => handleWishlistToggle(product)}
+                  className="bg-white p-2 rounded-full shadow-md hover:bg-orange-50 transition-colors duration-200"
+                  title="Add to wishlist"
+                >
                   <Heart className="w-4 h-4 text-gray-600 hover:text-red-500" />
                 </button>
-                <button className="bg-white p-2 rounded-full shadow-md hover:bg-orange-50 transition-colors duration-200">
+                <button 
+                  onClick={() => handleQuickView(product)}
+                  className="bg-white p-2 rounded-full shadow-md hover:bg-orange-50 transition-colors duration-200"
+                  title="Quick View"
+                >
                   <Eye className="w-4 h-4 text-gray-600 hover:text-orange-500" />
                 </button>
               </div>
@@ -216,9 +275,12 @@ export default function BestSellersPage() {
                 </div>
 
                 {/* Add to Cart Button */}
-                <button className="w-full bg-orange-500 text-white py-2 px-4 rounded-lg hover:bg-orange-600 transition-colors duration-200 flex items-center justify-center gap-2 group-hover:bg-orange-600">
+                <button 
+                  onClick={() => handleAddToCart(product)}
+                  className="w-full bg-orange-500 text-white py-2 px-4 rounded-lg hover:bg-orange-600 transition-colors duration-200 flex items-center justify-center gap-2 group-hover:bg-orange-600"
+                >
                   <ShoppingBag className="w-4 h-4" />
-                  Add to Cart
+                  {addedProducts.has(product.id) ? 'Added to Cart!' : 'Add to Cart'}
                 </button>
               </div>
             </div>
@@ -257,6 +319,13 @@ export default function BestSellersPage() {
           </div>
         </div>
       </div>
+
+      {/* Quick View Modal */}
+      <QuickViewModal
+        product={selectedProduct}
+        isOpen={isQuickViewOpen}
+        onClose={handleCloseQuickView}
+      />
     </div>
   );
 }

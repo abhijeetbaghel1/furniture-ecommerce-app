@@ -1,9 +1,12 @@
 'use client';
 
+import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Heart, ShoppingBag, Eye } from 'lucide-react';
 import { useWishlist } from '@/state/wishlist';
+import { useCart } from '@/state/cart';
+import QuickViewModal from '@/components/catalog/QuickViewModal';
 
 // Mock product data for new arrivals
 const newArrivalsProducts = [
@@ -155,6 +158,10 @@ const newArrivalsProducts = [
 
 export default function NewArrivalsPage() {
   const { addItem, removeItem, isInWishlist } = useWishlist();
+  const { addItem: addToCart } = useCart();
+  const [selectedProduct, setSelectedProduct] = useState<any>(null);
+  const [isQuickViewOpen, setIsQuickViewOpen] = useState(false);
+  const [addedProducts, setAddedProducts] = useState<Set<string>>(new Set());
 
   const handleWishlistToggle = (product: any) => {
     const variant = product.variants[0];
@@ -163,6 +170,31 @@ export default function NewArrivalsPage() {
     } else {
       addItem(product, variant);
     }
+  };
+
+  const handleAddToCart = (product: any) => {
+    const variant = product.variants[0];
+    addToCart(product, variant, 1);
+    
+    // Show added feedback
+    setAddedProducts(prev => new Set(prev).add(product.id));
+    setTimeout(() => {
+      setAddedProducts(prev => {
+        const newSet = new Set(prev);
+        newSet.delete(product.id);
+        return newSet;
+      });
+    }, 2000);
+  };
+
+  const handleQuickView = (product: any) => {
+    setSelectedProduct(product);
+    setIsQuickViewOpen(true);
+  };
+
+  const handleCloseQuickView = () => {
+    setIsQuickViewOpen(false);
+    setSelectedProduct(null);
   };
 
   // Debug: Log products to verify they exist
@@ -211,7 +243,11 @@ export default function NewArrivalsPage() {
                       }`} 
                     />
                   </button>
-                  <button className="bg-white p-2 rounded-full shadow-md hover:bg-orange-50 transition-colors duration-200">
+                  <button 
+                    onClick={() => handleQuickView(product)}
+                    className="bg-white p-2 rounded-full shadow-md hover:bg-orange-50 transition-colors duration-200"
+                    title="Quick View"
+                  >
                     <Eye className="w-4 h-4 text-gray-600 hover:text-orange-500" />
                   </button>
                 </div>
@@ -269,9 +305,12 @@ export default function NewArrivalsPage() {
                   </div>
 
                   {/* Add to Cart Button */}
-                  <button className="w-full bg-orange-500 text-white py-2 px-4 rounded-lg hover:bg-orange-600 transition-colors duration-200 flex items-center justify-center gap-2 group-hover:bg-orange-600">
+                  <button 
+                    onClick={() => handleAddToCart(product)}
+                    className="w-full bg-orange-500 text-white py-2 px-4 rounded-lg hover:bg-orange-600 transition-colors duration-200 flex items-center justify-center gap-2 group-hover:bg-orange-600"
+                  >
                     <ShoppingBag className="w-4 h-4" />
-                    Add to Cart
+                    {addedProducts.has(product.id) ? 'Added to Cart!' : 'Add to Cart'}
                   </button>
                 </div>
               </div>
@@ -301,6 +340,13 @@ export default function NewArrivalsPage() {
           </div>
         </div>
       </div>
+
+      {/* Quick View Modal */}
+      <QuickViewModal
+        product={selectedProduct}
+        isOpen={isQuickViewOpen}
+        onClose={handleCloseQuickView}
+      />
     </div>
   );
 }
