@@ -165,6 +165,9 @@ export default function NewArrivalsPage() {
     }
   };
 
+  // Debug: Log products to verify they exist
+  console.log('New Arrivals Products:', newArrivalsProducts.length);
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-orange-50 to-white">
       {/* Hero Section */}
