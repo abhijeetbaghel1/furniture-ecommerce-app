@@ -38,124 +38,92 @@ interface NavItem {
 // Mock data for dropdown items - replace with your actual data
 const NAV_ITEMS: NavItem[] = [
   {
-    label: 'Our Collections',
-    href: '/collections',
+    label: 'Featured',
+    href: '/collections/featured',
     subItems: [
-      // Furniture Collection
-      { label: 'All Furniture', href: '/collections/furniture' },
-      
-      // New Arrivals Category
-      { label: 'New Arrivals', href: '/collections/new-arrivals' },
-      { label: 'Modern Sofa Set', href: '/collections/new-arrivals/modern-sofa' },
-      { label: 'Luxury Dining Table', href: '/collections/new-arrivals/dining-table' },
-      { label: 'Designer Coffee Table', href: '/collections/new-arrivals/coffee-table' },
-      { label: 'Elegant Wardrobe', href: '/collections/new-arrivals/wardrobe' },
-      { label: 'Stylish Bookshelf', href: '/collections/new-arrivals/bookshelf' },
-      { label: 'Premium Ottoman', href: '/collections/new-arrivals/ottoman' },
-      { label: 'Contemporary Mirror', href: '/collections/new-arrivals/mirror' },
-      { label: 'Designer Console', href: '/collections/new-arrivals/console' },
-      
-      // Best Sellers Category
-      { label: 'Best Sellers', href: '/collections/best-sellers' },
-      { label: 'Classic Leather Sofa', href: '/collections/best-sellers/leather-sofa' },
-      { label: 'Wooden Dining Set', href: '/collections/best-sellers/dining-set' },
-      { label: 'Coffee Table Set', href: '/collections/best-sellers/coffee-set' },
-      { label: 'Bedroom Furniture Set', href: '/collections/best-sellers/bedroom-set' },
-      { label: 'Office Desk Chair', href: '/collections/best-sellers/office-chair' },
-      { label: 'TV Stand Unit', href: '/collections/best-sellers/tv-stand' },
-      { label: 'Side Table Set', href: '/collections/best-sellers/side-table' },
-      { label: 'Bar Cabinet', href: '/collections/best-sellers/bar-cabinet' },
-      
-      // Living Room Category
-      { label: 'Living Room', href: '/collections/living-room' },
-      { label: 'Sectional Sofas', href: '/collections/living-room/sectional-sofas' },
-      { label: 'Recliners', href: '/collections/living-room/recliners' },
-      { label: 'Coffee Tables', href: '/collections/living-room/coffee-tables' },
-      { label: 'TV Units', href: '/collections/living-room/tv-units' },
-      { label: 'Bookshelves', href: '/collections/living-room/bookshelves' },
-      { label: 'Console Tables', href: '/collections/living-room/console-tables' },
-      { label: 'Side Tables', href: '/collections/living-room/side-tables' },
-      { label: 'Display Cabinets', href: '/collections/living-room/display-cabinets' },
-      
-      // Bedroom Category
-      { label: 'Bedroom', href: '/collections/bedroom' },
-      { label: 'King Size Beds', href: '/collections/bedroom/king-beds' },
-      { label: 'Queen Size Beds', href: '/collections/bedroom/queen-beds' },
-      { label: 'Wardrobes', href: '/collections/bedroom/wardrobes' },
-      { label: 'Dressers', href: '/collections/bedroom/dressers' },
-      { label: 'Nightstands', href: '/collections/bedroom/nightstands' },
-      { label: 'Vanities', href: '/collections/bedroom/vanities' },
-      { label: 'Bedroom Benches', href: '/collections/bedroom/benches' },
-      { label: 'Chest of Drawers', href: '/collections/bedroom/chest-drawers' },
-      
-      // Dining Room Category
-      { label: 'Dining Room', href: '/collections/dining-room' },
-      { label: 'Dining Tables', href: '/collections/dining-room/dining-tables' },
-      { label: 'Dining Chairs', href: '/collections/dining-room/dining-chairs' },
-      { label: 'Dining Sets', href: '/collections/dining-room/dining-sets' },
-      { label: 'Buffet Cabinets', href: '/collections/dining-room/buffet-cabinets' },
-      { label: 'Bar Stools', href: '/collections/dining-room/bar-stools' },
-      { label: 'Sideboards', href: '/collections/dining-room/sideboards' },
-      { label: 'Dining Benches', href: '/collections/dining-room/dining-benches' },
-      { label: 'Wine Racks', href: '/collections/dining-room/wine-racks' },
-      
-      // Office Category
-      { label: 'Office', href: '/collections/office' },
-      { label: 'Executive Desks', href: '/collections/office/executive-desks' },
-      { label: 'Office Chairs', href: '/collections/office/office-chairs' },
-      { label: 'Bookcases', href: '/collections/office/bookcases' },
-      { label: 'Filing Cabinets', href: '/collections/office/filing-cabinets' },
-      { label: 'Conference Tables', href: '/collections/office/conference-tables' },
-      { label: 'Office Storage', href: '/collections/office/storage' },
-      { label: 'Reception Desks', href: '/collections/office/reception-desks' },
-      { label: 'Office Sofas', href: '/collections/office/office-sofas' },
-      
-      // Outdoor Category
-      { label: 'Outdoor', href: '/collections/outdoor' },
-      { label: 'Patio Sets', href: '/collections/outdoor/patio-sets' },
-      { label: 'Outdoor Sofas', href: '/collections/outdoor/outdoor-sofas' },
-      { label: 'Garden Benches', href: '/collections/outdoor/garden-benches' },
-      { label: 'Outdoor Dining', href: '/collections/outdoor/outdoor-dining' },
-      { label: 'Lounge Chairs', href: '/collections/outdoor/lounge-chairs' },
-      { label: 'Outdoor Tables', href: '/collections/outdoor/outdoor-tables' },
-      { label: 'Umbrellas', href: '/collections/outdoor/umbrellas' },
-      { label: 'Planters', href: '/collections/outdoor/planters' },
-      
-      // Lighting Category
-      { label: 'Lighting', href: '/collections/lighting' },
-      { label: 'Chandeliers', href: '/collections/lighting/chandeliers' },
-      { label: 'Pendant Lights', href: '/collections/lighting/pendant-lights' },
-      { label: 'Floor Lamps', href: '/collections/lighting/floor-lamps' },
-      { label: 'Table Lamps', href: '/collections/lighting/table-lamps' },
-      { label: 'Wall Sconces', href: '/collections/lighting/wall-sconces' },
-      { label: 'Ceiling Lights', href: '/collections/lighting/ceiling-lights' },
-      { label: 'Outdoor Lighting', href: '/collections/lighting/outdoor-lighting' },
-      { label: 'Smart Lighting', href: '/collections/lighting/smart-lighting' },
+      { label: 'All Featured', href: '/collections/featured' },
+      { label: 'Premium Selection', href: '/collections/featured/premium' },
+      { label: 'Editor\'s Choice', href: '/collections/featured/editors-choice' },
+      { label: 'Trending Now', href: '/collections/featured/trending' },
     ]
   },
   {
     label: 'Furniture',
     href: '/collections/furniture',
+    subItems: [
+      { label: 'All Furniture', href: '/collections/furniture' },
+      { label: 'Sofas', href: '/collections/furniture/sofas' },
+      { label: 'Chairs', href: '/collections/furniture/chairs' },
+      { label: 'Tables', href: '/collections/furniture/tables' },
+      { label: 'Beds', href: '/collections/furniture/beds' },
+      { label: 'Storage', href: '/collections/furniture/storage' },
+    ]
   },
   {
     label: 'Lighting',
     href: '/collections/lighting',
+    subItems: [
+      { label: 'All Lighting', href: '/collections/lighting' },
+      { label: 'Ceiling Lights', href: '/collections/lighting/ceiling-lights' },
+      { label: 'Table Lamps', href: '/collections/lighting/table-lamps' },
+      { label: 'Floor Lamps', href: '/collections/lighting/floor-lamps' },
+      { label: 'Wall Lights', href: '/collections/lighting/wall-lights' },
+    ]
   },
   {
     label: 'Decor',
     href: '/collections/decor',
+    subItems: [
+      { label: 'All Decor', href: '/collections/decor' },
+      { label: 'Wall Art', href: '/collections/decor/wall-art' },
+      { label: 'Mirrors', href: '/collections/decor/mirrors' },
+      { label: 'Cushions', href: '/collections/decor/cushions' },
+      { label: 'Vases', href: '/collections/decor/vases' },
+    ]
   },
   {
     label: 'Garden',
     href: '/collections/garden',
+    subItems: [
+      { label: 'All Garden', href: '/collections/garden' },
+      { label: 'Outdoor Furniture', href: '/collections/garden/outdoor-furniture' },
+      { label: 'Planters', href: '/collections/garden/planters' },
+      { label: 'Garden Decor', href: '/collections/garden/garden-decor' },
+    ]
+  },
+  {
+    label: 'Shop By Style',
+    href: '/collections/styles',
+    subItems: [
+      { label: 'All Styles', href: '/collections/styles' },
+      { label: 'Modern', href: '/collections/styles/modern' },
+      { label: 'Contemporary', href: '/collections/styles/contemporary' },
+      { label: 'Minimalist', href: '/collections/styles/minimalist' },
+      { label: 'Scandinavian', href: '/collections/styles/scandinavian' },
+    ]
   },
   {
     label: 'Clearance Sale',
     href: '/collections/clearance-sale',
+    subItems: [
+      { label: 'All Deals', href: '/collections/clearance-sale' },
+      { label: 'Furniture Deals', href: '/collections/clearance-sale/furniture-deals' },
+      { label: 'Lighting Deals', href: '/collections/clearance-sale/lighting-deals' },
+      { label: 'Decor Deals', href: '/collections/clearance-sale/decor-deals' },
+    ]
   },
   {
-    label: 'Account',
-    href: '/account',
+    label: 'Collections',
+    href: '/collections',
+    subItems: [
+      { label: 'New Arrivals', href: '/collections/new-arrivals' },
+      { label: 'Best Sellers', href: '/collections/best-sellers' },
+      { label: 'Living Room', href: '/collections/living-room' },
+      { label: 'Bedroom', href: '/collections/bedroom' },
+      { label: 'Dining Room', href: '/collections/dining-room' },
+      { label: 'Office', href: '/collections/office' },
+      { label: 'Outdoor', href: '/collections/outdoor' },
+    ]
   },
   {
     label: 'Wishlist',
