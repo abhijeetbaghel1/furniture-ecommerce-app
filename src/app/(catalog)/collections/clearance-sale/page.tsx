@@ -7,6 +7,7 @@ import { Heart, ShoppingBag, Eye } from 'lucide-react';
 import { useWishlist } from '@/state/wishlist';
 import { useCart } from '@/state/cart';
 import QuickViewModal from '@/components/catalog/QuickViewModal';
+import { formatPrice, calculateDiscount } from '@/lib/utils/price';
 
 // Mock product data for clearance sale
 const clearanceProducts = [
@@ -313,14 +314,14 @@ export default function ClearanceSalePage() {
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center gap-2">
                     <span className="text-xl font-bold text-red-600">
-                      ₹{product.price.toLocaleString()}
+                      ₹{formatPrice(product.price)}
                     </span>
                     <span className="text-sm text-gray-500 line-through">
-                      ₹{product.originalPrice.toLocaleString()}
+                      ₹{formatPrice(product.originalPrice)}
                     </span>
                   </div>
                   <span className="text-xs bg-red-100 text-red-600 px-2 py-1 rounded-full font-semibold">
-                    Save ₹{(product.originalPrice - product.price).toLocaleString()}
+                    Save ₹{formatPrice(product.originalPrice - product.price)}
                   </span>
                 </div>
 

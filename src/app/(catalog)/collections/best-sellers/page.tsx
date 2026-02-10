@@ -7,6 +7,7 @@ import { Heart, ShoppingBag, Eye, Star } from 'lucide-react';
 import { useWishlist } from '@/state/wishlist';
 import { useCart } from '@/state/cart';
 import QuickViewModal from '@/components/catalog/QuickViewModal';
+import { formatPrice, calculateDiscount } from '@/lib/utils/price';
 
 // Mock product data for best sellers
 const bestSellersProducts = [
@@ -259,17 +260,17 @@ export default function BestSellersPage() {
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center gap-2">
                     <span className="text-xl font-bold text-gray-900">
-                      ₹{product.price.toLocaleString()}
+                      ₹{formatPrice(product.price)}
                     </span>
                     {product.originalPrice && (
                       <span className="text-sm text-gray-500 line-through">
-                        ₹{product.originalPrice.toLocaleString()}
+                        ₹{formatPrice(product.originalPrice)}
                       </span>
                     )}
                   </div>
                   {product.originalPrice && (
                     <span className="text-xs bg-red-100 text-red-600 px-2 py-1 rounded-full font-semibold">
-                      {Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)}% OFF
+                      {calculateDiscount(product.originalPrice, product.price)}% OFF
                     </span>
                   )}
                 </div>
