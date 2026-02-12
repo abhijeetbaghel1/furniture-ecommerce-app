@@ -7,16 +7,45 @@ import { Heart, ShoppingBag, Eye } from 'lucide-react';
 import { useWishlist } from '@/state/wishlist';
 import { useCart } from '@/state/cart';
 import QuickViewModal from '@/components/catalog/QuickViewModal';
+import { formatPrice, calculateDiscount } from '@/lib/utils/price';
+
+// Define product type
+interface Product {
+  id: string;
+  title: string;
+  handle: string;
+  price: number;
+  originalPrice: number;
+  image: string;
+  category: string;
+  badge: string;
+  description: string;
+  variants: Array<{
+    id: string;
+    title: string;
+    price: { amount: number; currency: string };
+    available: boolean;
+  }>;
+  images?: string[];
+  availability?: string;
+  materials?: string[];
+  seo?: {
+    title?: string;
+    description?: string;
+    keywords?: string[];
+  };
+  tags?: string[];
+}
 
 // Mock product data for new arrivals
-const newArrivalsProducts = [
+const newArrivalsProducts: Product[] = [
   {
     id: '1',
     title: 'Modern Sofa Set',
     handle: 'modern-sofa-set',
     price: 45000,
     originalPrice: 55000,
-    image: '/api/placeholder/400/300',
+    image: `/api/placeholder/400/300?seed=${encodeURIComponent(product.name)}`,
     category: 'Living Room',
     badge: 'New',
     description: 'Contemporary 3-seater sofa with premium fabric upholstery and wooden legs',
@@ -28,7 +57,7 @@ const newArrivalsProducts = [
     handle: 'luxury-dining-table',
     price: 35000,
     originalPrice: 42000,
-    image: '/api/placeholder/400/300',
+    image: `/api/placeholder/400/300?seed=${encodeURIComponent(product.name)}`,
     category: 'Dining Room',
     badge: 'New',
     description: 'Solid wood dining table for 6 people with elegant finish',
@@ -40,7 +69,7 @@ const newArrivalsProducts = [
     handle: 'designer-coffee-table',
     price: 12000,
     originalPrice: 15000,
-    image: '/api/placeholder/400/300',
+    image: `/api/placeholder/400/300?seed=${encodeURIComponent(product.name)}`,
     category: 'Living Room',
     badge: 'New',
     description: 'Modern coffee table with glass top and metal frame',
@@ -52,7 +81,7 @@ const newArrivalsProducts = [
     handle: 'elegant-wardrobe',
     price: 28000,
     originalPrice: 32000,
-    image: '/api/placeholder/400/300',
+    image: `/api/placeholder/400/300?seed=${encodeURIComponent(product.name)}`,
     category: 'Bedroom',
     badge: 'New',
     description: 'Spacious 3-door wardrobe with mirror and internal organizers',
@@ -64,7 +93,7 @@ const newArrivalsProducts = [
     handle: 'stylish-bookshelf',
     price: 8000,
     originalPrice: 10000,
-    image: '/api/placeholder/400/300',
+    image: `/api/placeholder/400/300?seed=${encodeURIComponent(product.name)}`,
     category: 'Living Room',
     badge: 'New',
     description: '5-tier wooden bookshelf with modern design',
@@ -76,7 +105,7 @@ const newArrivalsProducts = [
     handle: 'premium-ottoman',
     price: 6000,
     originalPrice: 7500,
-    image: '/api/placeholder/400/300',
+    image: `/api/placeholder/400/300?seed=${encodeURIComponent(product.name)}`,
     category: 'Living Room',
     badge: 'New',
     description: 'Comfortable ottoman with storage compartment',
@@ -88,7 +117,7 @@ const newArrivalsProducts = [
     handle: 'contemporary-mirror',
     price: 4000,
     originalPrice: 5000,
-    image: '/api/placeholder/400/300',
+    image: `/api/placeholder/400/300?seed=${encodeURIComponent(product.name)}`,
     category: 'Decor',
     badge: 'New',
     description: 'Modern wall mirror with decorative frame',
@@ -100,7 +129,7 @@ const newArrivalsProducts = [
     handle: 'designer-console',
     price: 9000,
     originalPrice: 11000,
-    image: '/api/placeholder/400/300',
+    image: `/api/placeholder/400/300?seed=${encodeURIComponent(product.name)}`,
     category: 'Living Room',
     badge: 'New',
     description: 'Elegant console table for entryway or living room',
@@ -112,7 +141,7 @@ const newArrivalsProducts = [
     handle: 'executive-office-chair',
     price: 15000,
     originalPrice: 18000,
-    image: '/api/placeholder/400/300',
+    image: `/api/placeholder/400/300?seed=${encodeURIComponent(product.name)}`,
     category: 'Office',
     badge: 'New',
     description: 'High-back executive chair with lumbar support',
@@ -124,7 +153,7 @@ const newArrivalsProducts = [
     handle: 'king-size-bed-frame',
     price: 22000,
     originalPrice: 26000,
-    image: '/api/placeholder/400/300',
+    image: `/api/placeholder/400/300?seed=${encodeURIComponent(product.name)}`,
     category: 'Bedroom',
     badge: 'New',
     description: 'Luxurious king size bed with upholstered headboard',
@@ -136,7 +165,7 @@ const newArrivalsProducts = [
     handle: 'outdoor-patio-set',
     price: 18000,
     originalPrice: 22000,
-    image: '/api/placeholder/400/300',
+    image: `/api/placeholder/400/300?seed=${encodeURIComponent(product.name)}`,
     category: 'Outdoor',
     badge: 'New',
     description: '4-piece outdoor patio set with weather-resistant materials',
@@ -148,7 +177,7 @@ const newArrivalsProducts = [
     handle: 'crystal-chandelier',
     price: 12000,
     originalPrice: 15000,
-    image: '/api/placeholder/400/300',
+    image: `/api/placeholder/400/300?seed=${encodeURIComponent(product.name)}`,
     category: 'Lighting',
     badge: 'New',
     description: 'Elegant crystal chandelier with LED lighting',
@@ -163,7 +192,7 @@ export default function NewArrivalsPage() {
   const [isQuickViewOpen, setIsQuickViewOpen] = useState(false);
   const [addedProducts, setAddedProducts] = useState<Set<string>>(new Set());
 
-  const handleWishlistToggle = (product: any) => {
+  const handleWishlistToggle = (product: Product) => {
     const variant = product.variants[0];
     if (isInWishlist(product.id, variant.id)) {
       removeItem(product.id, variant.id);
