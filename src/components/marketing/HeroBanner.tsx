@@ -10,6 +10,7 @@ import Container from '@/components/common/Container';
 export default function HeroBanner() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const [mounted, setMounted] = useState(false);
   
   // Array of hero images with alt text
   const heroImages = [
@@ -48,18 +49,22 @@ export default function HeroBanner() {
   const currentIndexRef = useRef(0);
   
   useEffect(() => {
+    setMounted(true);
+  }, []);
+  
+  useEffect(() => {
     currentIndexRef.current = currentImageIndex;
   }, [currentImageIndex]);
   
   useEffect(() => {
-    if (isPaused) return;
+    if (!mounted || isPaused) return;
     
     const timer = setInterval(() => {
       goToNext();
     }, 3000);
 
     return () => clearInterval(timer);
-  }, [isPaused, goToNext]);
+  }, [mounted, isPaused, goToNext]);
 
   const fallbackImage = 'https://images.pexels.com/photos/1571459/pexels-photo-1571459.jpeg';
 
@@ -185,18 +190,12 @@ export default function HeroBanner() {
                         priority={index < 2} // Preload first 2 images
                         sizes="(max-width: 1024px) 80vw, 60vw"
                         quality={90}
-                        onLoad={() => console.log('Image loaded:', image.src)}
                         onError={(e) => {
-                          console.error('Error loading image:', image.src);
                           const target = e.currentTarget;
                           target.onerror = null; // Prevent infinite loop
                           target.src = fallbackImage;
                         }}
                       />
-                      {/* Debug overlay */}
-                      <div className="absolute bottom-2 left-2 bg-black/50 text-white text-xs p-1 rounded">
-                        {index + 1}/{heroImages.length}
-                      </div>
                     </div>
                   </div>
                 ))}
